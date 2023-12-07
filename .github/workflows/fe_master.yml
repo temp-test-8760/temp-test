@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16.x"
-          
+
       - name: check build
         run: node checkBundleSize.cjs > bundleSize.json && cat bundleSize.json
 
@@ -26,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: bundleSize
-          path: bandwdth-fe/bundleSize.json
+          path: bundleSize.json
