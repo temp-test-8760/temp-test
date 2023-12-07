@@ -27,3 +27,6 @@ jobs:
         with:
           name: bundleSize
           path: bundleSize.json
+
+      # Commit all changed files back to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v5
