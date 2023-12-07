@@ -1,0 +1,29 @@
+name: Frontend Master Push
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  merge_group:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          
+      - name: check build
+        run: node checkBundleSize.cjs > bundleSize.json && cat bundleSize.json
+
+      - name: Archive bundleSize
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundleSize
+          path: bandwdth-fe/bundleSize.json
