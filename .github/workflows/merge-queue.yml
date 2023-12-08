@@ -17,8 +17,6 @@ jobs:
           persist-credentials: false
       - name: Use Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: "16.x"
 
       - name: check build
         run: node checkBundleSize.cjs > bundleSize.json && cat bundleSize.json
