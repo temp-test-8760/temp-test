@@ -1,9 +1,12 @@
 name: Validate code in the merge queue
 
 on:
+  pull_request:
   merge_group:
 
 jobs:
+  deployment:
+    if: ${{ github.event_name == 'merge_group' }}
   build:
     runs-on: ubuntu-latest
     permissions:
