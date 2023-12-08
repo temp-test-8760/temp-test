@@ -20,12 +20,13 @@ jobs:
 
       - name: check build
         run: node checkBundleSize.cjs > bundleSize.json && cat bundleSize.json
+        if: ${{ github.event_name == 'merge_group' }}
 
-      - name: Archive bundleSize
-        uses: actions/upload-artifact@v2
-        with:
-          name: bundleSize
-          path: bundleSize.json
+      # - name: Archive bundleSize
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: bundleSize
+      #     path: bundleSize.json
 
       # # Commit all changed files back to the repository
       # - uses: stefanzweifel/git-auto-commit-action@v5
