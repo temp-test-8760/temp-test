@@ -1,25 +1,15 @@
-name: Pull Request Merge
-
+name: Merge Verification
 on:
   pull_request:
-    types:
-      - closed
+    types: [closed]
     branches:
       - main
-
 jobs:
-  merge:
+  verify:
+    if: github.event.pull_ request.merged == true
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: check for migration conflicts
+      - name: Run verification
         run: python migration_conflicts.py
-
-      - name: Prevent merge on failure
-        if: ${{ github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && job.status != 'success' }}
-        run: |
-          echo "Checks failed. Merging to master is not allowed."
-          exit 1
