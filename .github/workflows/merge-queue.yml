@@ -1,8 +1,8 @@
 name: PR Merge Queue
 on:
-  merge_group:
-    types: [checks_requested]
-    branches: [main]
+  # merge_group:
+  #   types: [checks_requested]
+  #   branches: [main]
   workflow_dispatch:
 
 jobs:
