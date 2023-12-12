@@ -1,15 +1,24 @@
-name: Merge Verification
+name: CI
+
 on:
   pull_request:
-    types: [closed]
     branches:
       - main
+
 jobs:
-  verify:
-    if: github.event.pull_ request.merged == true
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Run verification
+
+  merge-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Merge check
         run: python migration_conflicts.py
